@@ -80,13 +80,15 @@ namespace ProfileApp.Controllers
         {
             await SetInitialDataAsync();
             if (ModelState.IsValid)
-            {
+            { 
                 UserDTO userDto = new UserDTO
                 {
                     Email = model.Email,
                     Password = model.Password,
                     Address = model.Address,
                     Name = model.Name,
+                    Surname = model.Surname,
+                    Photo = model.Photo.FileName,
                     Role = "user"
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);

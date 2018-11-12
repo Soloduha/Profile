@@ -9,6 +9,10 @@ namespace Profile.DAL.Entities
 {
     public class ApplicationUser:IdentityUser
     {
-        public virtual ClientProfile ClientProfile { get; set; }
+        public string Surname { get; set; }
+
+        public string Address { get; set; }
+
+        public string Photo { get; set; }
     }
 }

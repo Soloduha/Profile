@@ -14,7 +14,6 @@
 <div>
     <h4>Регистрация пользователя</h4>
     <hr />
-    @Html.ValidationSummary(false)
 
     <div>
         Имя
@@ -23,6 +22,19 @@
         </div>
     </div>
 
+    <div>
+        Фамилия
+        <div>
+            @Html.EditorFor(model => model.Surname)
+        </div>
+    </div>
+
+    <div>
+        Логин
+        <div>
+            @Html.EditorFor(model => model.Login)
+        </div>
+    </div>
 
     <div>
         Электронный адрес
@@ -41,16 +53,23 @@
     <div>
         Пароль
         <div>
-            @Html.EditorFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password)
         </div>
     </div>
 
     <div>
         Подтвердить пароль
         <div>
-            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.PasswordFor(model => model.ConfirmPassword)
         </div>
     </div>
+
+    <form>
+        <div class="form-group">
+            <label for="Photo">Example file input</label>
+            <input type="file" class="form-control-file" id="Photo">
+        </div>
+    </form>
 
     <div>
         <div>

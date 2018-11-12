@@ -14,8 +14,7 @@ namespace Profile.DAL
         }
 
         //DbSet for each entity type that you want to include in your model. 
-
-        public DbSet<ClientProfile> ClientProfiles { get; set; }
+        
     }
 
 

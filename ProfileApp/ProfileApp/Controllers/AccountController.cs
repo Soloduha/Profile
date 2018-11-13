@@ -88,7 +88,7 @@ namespace ProfileApp.Controllers
                     Address = model.Address,
                     Name = model.Name,
                     Surname = model.Surname,
-                    Photo = model.Photo.FileName,
+                    //Photo = model.Photo.FileName,
                     Role = "user"
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);

@@ -10,22 +10,22 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
 
 <div>
     <h4>Регистрация пользователя</h4>
     <hr />
-
-    <div>
-        Имя
-        <div>
-            @Html.EditorFor(model => model.Name)
-        </div>
+    <div class="form-group row">
+            @Html.LabelFor(model=>model.Name,"Input your name")
+            @Html.EditorFor(model=>model.Name)
+            @Html.ValidationMessageFor(model=>model.Name)
     </div>
 
     <div>
         Фамилия
         <div>
             @Html.EditorFor(model => model.Surname)
+            @Html.ValidationMessageFor(model => model.Surname)
         </div>
     </div>
 
@@ -33,6 +33,7 @@
         Логин
         <div>
             @Html.EditorFor(model => model.Login)
+            @Html.ValidationMessageFor(model => model.Login)
         </div>
     </div>
 
@@ -40,6 +41,7 @@
         Электронный адрес
         <div>
             @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
         </div>
     </div>
 
@@ -47,6 +49,7 @@
         Адрес
         <div>
             @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
         </div>
     </div>
 
@@ -54,6 +57,7 @@
         Пароль
         <div>
             @Html.PasswordFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
         </div>
     </div>
 
@@ -61,6 +65,7 @@
         Подтвердить пароль
         <div>
             @Html.PasswordFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
     </div>
 

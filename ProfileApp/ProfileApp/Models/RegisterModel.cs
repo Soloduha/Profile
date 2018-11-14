@@ -11,7 +11,7 @@ namespace ProfileApp.Models
         [Required(ErrorMessage = "Please enter email")]
         [EmailAddress(ErrorMessage = "Enter email in correct format")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Please enter password")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Password must have minimum 6 chatacters")]
         [DataType(DataType.Password, ErrorMessage = "Please enter valid password")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Please confirm password")]

@@ -6,80 +6,87 @@
 
 <h2>Регистрация</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-
 <div>
-    <h4>Регистрация пользователя</h4>
     <hr />
     <div class="form-group row">
-            @Html.LabelFor(model=>model.Name,"Input your name")
-            @Html.EditorFor(model=>model.Name)
-            @Html.ValidationMessageFor(model=>model.Name)
+        @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Vladislav" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
     </div>
 
-    <div>
-        Фамилия
-        <div>
-            @Html.EditorFor(model => model.Surname)
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Surname, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", @placeholder = "Smith" })
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
     </div>
 
-    <div>
-        Логин
-        <div>
-            @Html.EditorFor(model => model.Login)
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Login, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @placeholder = "GolemVlad23" })
             @Html.ValidationMessageFor(model => model.Login)
         </div>
     </div>
 
-    <div>
-        Электронный адрес
-        <div>
-            @Html.EditorFor(model => model.Email)
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "vlad_smith@gmail.com" })
             @Html.ValidationMessageFor(model => model.Email)
         </div>
     </div>
 
-    <div>
-        Адрес
-        <div>
-            @Html.EditorFor(model => model.Address)
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Wall Street 25" })
             @Html.ValidationMessageFor(model => model.Address)
         </div>
     </div>
 
-    <div>
-        Пароль
-        <div>
-            @Html.PasswordFor(model => model.Password)
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Password, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "********" })
             @Html.ValidationMessageFor(model => model.Password)
         </div>
     </div>
 
-    <div>
-        Подтвердить пароль
-        <div>
-            @Html.PasswordFor(model => model.ConfirmPassword)
+    <div class="form-group row">
+        @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "********" })
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
     </div>
 
-    <form>
-        <div class="form-group">
-            <label for="Photo">Example file input</label>
-            <input type="file" class="form-control-file" id="Photo">
-        </div>
-    </form>
-
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="Photo" name="Photo" onchange="ChangeFileName()">
+        <label class="custom-file-label" id="PhotoLabel" for="validatedCustomFile">Choose your photo</label>
+        <div class="invalid-feedback">Example invalid custom file feedback</div>
+    </div>
+    <br><br>
     <div>
         <div>
-            <input type="submit" value="Зарегистрировать" />
+            <input type="submit" class="btn btn-success" value="Зарегистрировать" />
         </div>
     </div>
 </div>
 }
+
+<script>
+    function ChangeFileName()
+    {
+        let input_file = document.getElementById('Photo').files[0];
+        let filename = input_file.name;
+        document.getElementById("PhotoLabel").innerText=filename;
+    }
+</script>

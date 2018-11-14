@@ -29,17 +29,18 @@ namespace Profile.BLL.Services
             {
                 user = new ApplicationUser { Email = userDto.Email, UserName = userDto.Name,
                     Address = userDto.Address, Surname=userDto.Surname, Photo = userDto.Photo};
+
                 var result = await Database.UserManager.CreateAsync(user, userDto.Password);
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
                 // добавляем роль
                 await Database.UserManager.AddToRoleAsync(user.Id, userDto.Role);
                 await Database.SaveAsync();
-                return new OperationDetails(true, "Регистрация успешно пройдена", "");
+                return new OperationDetails(true, "Success", "");
             }
             else
             {
-                return new OperationDetails(false, "Пользователь с таким логином уже существует", "Email");
+                return new OperationDetails(false, "Email is already exists", "Email");
             }
         }
 

@@ -6,6 +6,7 @@ using Profile.BLL.Interfaces;
 using ProfileApp.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -79,6 +80,7 @@ namespace ProfileApp.Controllers
         public async Task<ActionResult> Register(RegisterModel model)
         {
             await SetInitialDataAsync();
+
             if (ModelState.IsValid)
             { 
                 UserDTO userDto = new UserDTO
@@ -88,14 +90,38 @@ namespace ProfileApp.Controllers
                     Address = model.Address,
                     Name = model.Name,
                     Surname = model.Surname,
-                    //Photo = model.Photo.FileName,
                     Role = "user"
                 };
+
+                string path = String.Empty;
+                if (model.Photo != null && model.Photo.ContentLength > 0)
+                {
+                    try
+                    {
+                        path = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(model.Photo.FileName));
+                        model.Photo.SaveAs(path);
+                        userDto.Photo = @"~\Images\"+model.Photo.FileName;
+                        ViewBag.Message = "File uploaded successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "You have not specified a file.";
+                }
+
+
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
                 else
+                {
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
+                    System.IO.File.Delete(path);
+                }
             }
             return View(model);
         }

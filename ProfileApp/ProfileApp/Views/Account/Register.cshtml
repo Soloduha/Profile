@@ -4,9 +4,17 @@
     ViewBag.Title = "Register";
 }
 
+<script>
+    function ChangeFileName() {
+        let input_file = document.getElementById('Photo').files[0];
+        let filename = input_file.name;
+        document.getElementById("PhotoLabel").innerText = filename;
+    }
+</script>
+
 <h2>Регистрация</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -69,10 +77,12 @@
     </div>
 
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="Photo" name="Photo" onchange="ChangeFileName()">
-        <label class="custom-file-label" id="PhotoLabel" for="validatedCustomFile">Choose your photo</label>
+        @Html.TextBoxFor(model => model.Photo,new { type = "file", @class = "custom-file-input", id="Photo", name="Photo", onchange = "ChangeFileName()" })
+        <label class="custom-file-label" id="PhotoLabel" for="Photo">Choose your photo</label>
         <div class="invalid-feedback">Example invalid custom file feedback</div>
     </div>
+
+
     <br><br>
     <div>
         <div>
@@ -82,11 +92,3 @@
 </div>
 }
 
-<script>
-    function ChangeFileName()
-    {
-        let input_file = document.getElementById('Photo').files[0];
-        let filename = input_file.name;
-        document.getElementById("PhotoLabel").innerText=filename;
-    }
-</script>

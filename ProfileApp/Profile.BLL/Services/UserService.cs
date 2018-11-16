@@ -22,6 +22,12 @@ namespace Profile.BLL.Services
             Database = uow;
         }
 
+        public async Task<bool> IsUserByEmail(string email)
+        {
+            ApplicationUser user= await Database.UserManager.FindByEmailAsync(email);
+            return user == null;
+        }
+
         public async Task<OperationDetails> Create(UserDTO userDto)
         {
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);

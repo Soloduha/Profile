@@ -116,7 +116,7 @@ namespace ProfileApp.Controllers
 
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
-                    return View("SuccessRegister");
+                    return View(viewName:"SuccessRegister",model:Path.GetFileName(model.Photo.FileName));
                 else
                 {
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
@@ -125,6 +125,13 @@ namespace ProfileApp.Controllers
             }
             return View(model);
         }
+
+        public async Task<ActionResult> IsUniqueEmail(string Email)
+        {
+            bool isUnique =await UserService.IsUserByEmail(Email);
+            return PartialView(viewName: "EmailCheck", model: isUnique);
+        }
+
         private async Task SetInitialDataAsync()
         {
             await UserService.SetInitialData(new UserDTO

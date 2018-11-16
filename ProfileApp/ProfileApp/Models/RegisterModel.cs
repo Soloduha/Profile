@@ -21,10 +21,10 @@ namespace ProfileApp.Models
         [Required(ErrorMessage = "Please enter address")]
         public string Address { get; set; }
         [Required(ErrorMessage = "Please enter name")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "The length of the name should be 2 - 25 characters long")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "The length of the name should be 2 - 20 characters long")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter surname")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "The length of the surname should be 2 - 25 characters long")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "The length of the surname should be 2 - 20 characters long")]
         public string Surname { get; set; }
         [Required(ErrorMessage = "Please enter login")]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "The length of the login should be 2 - 25 characters long")]

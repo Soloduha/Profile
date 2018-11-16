@@ -11,6 +11,8 @@ namespace Profile.BLL.Interfaces
 {
     public interface IUserService : IDisposable
     {
+        Task<bool> IsUserByEmail(string Email);
+
         Task<OperationDetails> Create(UserDTO userDto);
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
         Task SetInitialData(UserDTO adminDto, List<string> roles);

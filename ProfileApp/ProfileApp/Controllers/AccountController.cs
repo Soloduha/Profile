@@ -3,6 +3,7 @@ using Microsoft.Owin.Security;
 using Profile.BLL.DTO;
 using Profile.BLL.Infrastructure;
 using Profile.BLL.Interfaces;
+using ProfileApp.AdditionalClasses;
 using ProfileApp.Models;
 using System;
 using System.Collections.Generic;
@@ -116,16 +117,17 @@ namespace ProfileApp.Controllers
 
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
-                    return View(viewName:"SuccessRegister",model:Path.GetFileName(model.Photo.FileName));
+                    return View(viewName:"SuccessRegister",model:Mapper.FromUserToProfile(userDto));
                 else
                 {
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
+                    if(String.IsNullOrEmpty(path)==false)
                     System.IO.File.Delete(path);
                 }
             }
             return View(model);
         }
-
+        
         public async Task<ActionResult> IsUniqueEmail(string Email)
         {
             bool isUnique =await UserService.IsUserByEmail(Email);

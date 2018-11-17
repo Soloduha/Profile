@@ -1,10 +1,10 @@
 ﻿@model bool
 
-@if(@Model==true)
+@if (@Model == true)
 {
-    <p>Unique</p>
+    <div class="alert alert-success" role="alert">This is unique email </div>
 }
 else
 {
-    <p>NotUnique</p>
+    <div class="alert alert-danger" role="alert">This email is not unique</div>
 }

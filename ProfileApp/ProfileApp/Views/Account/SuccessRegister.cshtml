@@ -1,13 +1,15 @@
-﻿@model string
+﻿@model ProfileApp.Models.ProfileModel
 
 @{
     ViewBag.Title = "SuccessRegister";
 }
 
-@{
+@*@{
     string path = @Url.Content("~/Images/")  + Model;
-}
+}*@
 
 <h2>SuccessRegister</h2>
-<img src="@path" alt="@Model" width="100" height="100" />
-<p>All is okay!</p>
+@*<img src="@path" alt="@Model" width="100" height="100" />
+<p>All is okay!</p>*@
+
+@Html.EditorForModel()

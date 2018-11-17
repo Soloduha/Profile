@@ -173,6 +173,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalClasses\Mapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -183,6 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

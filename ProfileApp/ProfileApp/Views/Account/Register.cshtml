@@ -10,7 +10,9 @@
         let filename = input_file.name;
         document.getElementById("PhotoLabel").innerText = filename;
     }
+    
 </script>
+
 
 <h2>Регистрация</h2>
 
@@ -18,91 +20,109 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-    <div>
-        <hr />
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 col-form-label" })
-            <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Vladislav" })
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Surname, new { @class = "col-sm-2 col-form-label" })
-            <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", @placeholder = "Smith" })
-                @Html.ValidationMessageFor(model => model.Surname)
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Login, new { @class = "col-sm-2 col-form-label" })
-            <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @placeholder = "GolemVlad23" })
-                @Html.ValidationMessageFor(model => model.Login)
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 col-form-label" })
-            <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Wall Street 25" })
-                @Html.ValidationMessageFor(model => model.Address)
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.Password, new { @class = "col-sm-2 col-form-label" })
-            <div class="col-sm-10">
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "********" })
-                @Html.ValidationMessageFor(model => model.Password)
-            </div>
-        </div>
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-sm-2 col-form-label" })
-            <div class="col-sm-10">
-                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "********" })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword)
-            </div>
-        </div>
-
-        <div class="custom-file">
-            @Html.TextBoxFor(model => model.Photo, new { type = "file", @class = "custom-file-input", id = "Photo", name = "Photo", onchange = "ChangeFileName()" })
-            <label class="custom-file-label" id="PhotoLabel" for="Photo">Choose your photo</label>
-            <div class="invalid-feedback">Example invalid custom file feedback</div>
-        </div>
-
-
-        <br><br>
-        <div>
-            <div>
-                <input type="submit" class="btn btn-success" value="Зарегистрировать" />
-            </div>
+<div>
+    <hr />
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control text-dark", @placeholder = "Vladislav" })
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
     </div>
-}
-@using (Ajax.BeginForm("IsUniqueEmail", "Account", new AjaxOptions { UpdateTargetId = "email_check" }))
-{
-    <div class="form-group row">
 
-        @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label" })
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Surname, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Surname, new { @class = "form-control text-dark", @placeholder = "Smith" })
+            @Html.ValidationMessageFor(model => model.Surname)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Login, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Login, new { @class = "form-control text-dark", @placeholder = "GolemVlad23" })
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label " })
         <div class="col-sm-4">
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "vlad_smith@gmail.com" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control text-dark", @placeholder = "vlad_smith@gmail.com" })
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             @Html.ValidationMessageFor(model => model.Email)
         </div>
+        <div id="email_check" class="w-auto"></div>
         <div class="col-sm-2">
-            <input type="submit" class="btn btn-outline-primary" value="Check email" />
+            <input type="button" id="checkEmail_btn" onclick="checkEmail()" class="btn btn-outline-primary" value="Check email" />
         </div>
-        
-        <p id="email_check">asd</p>
+
     </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 col-form-label text-dark" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Wall Street 25" })
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Password, new { @class = "col-sm-2 col-form-label text-dark" })
+        <div class="col-sm-10">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "********" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control text-dark", @placeholder = "********" })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+    </div>
+
+    <div class="custom-file">
+        @Html.TextBoxFor(model => model.Photo, new { type = "file", @class = "custom-file-input text-dark", id = "Photo", name = "Photo", onchange = "ChangeFileName()" })
+        <label class="custom-file-label" id="PhotoLabel" for="Photo">Choose your photo</label>
+        <div class="invalid-feedback">Example invalid custom file feedback</div>
+    </div>
+
+
+    <br><br>
+    <div>
+        <div>
+            <input type="submit" class="btn btn-success" value="Зарегистрировать" />
+        </div>
+    </div>
+</div>
 }
+
+<script>
+    function checkEmail() {
+        var email = $('#Email').val();
+        $('#email_check').load("http://localhost:49923/Account/IsUniqueEmail?Email=" + email);
+        }
+</script>
+
+
+@*@using (Ajax.BeginForm("IsUniqueEmail", "Account", new AjaxOptions { UpdateTargetId = "email_check" }))
+    {
+        <div class="form-group row">
+
+            @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "vlad_smith@gmail.com" })
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-outline-primary" value="Check email" />
+            </div>
+
+            <p id="email_check">asd</p>
+        </div>
+    }*@
 

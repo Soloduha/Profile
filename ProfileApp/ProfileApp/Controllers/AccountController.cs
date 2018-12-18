@@ -101,7 +101,7 @@ namespace ProfileApp.Controllers
                     {
                         path = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(model.Photo.FileName));
                         model.Photo.SaveAs(path);
-                        userDto.Photo = @"~\Images\"+model.Photo.FileName;
+                        userDto.Photo = model.Photo.FileName;
                         ViewBag.Message = "File uploaded successfully";
                     }
                     catch (Exception ex)

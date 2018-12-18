@@ -4,12 +4,20 @@
     ViewBag.Title = "SuccessRegister";
 }
 
-@*@{
-    string path = @Url.Content("~/Images/")  + Model;
-}*@
+@{
+    string path ="/Images/"+Model.Photo;
+}
 
 <h2>SuccessRegister</h2>
-@*<img src="@path" alt="@Model" width="100" height="100" />
-<p>All is okay!</p>*@
+<img src="@path" alt="@Model.Name" width="100" height="100" />
 
-@Html.EditorForModel()
+
+<div class="form-group row">
+    @Html.LabelFor(model => Model.Login, new { @class = "col-sm-2 col-form-label" })
+    <div class="col-sm-10">
+        @Html.DisplayFor(model => model.Login, new { @class = "form-control text-dark", disabled = "disabled", rows = "1", cols = "10" })
+        @Html.LabelFor(model => model.Login, new { @class = "col - sm - 2 col - form - label"})
+        @*@Html.TextBoxFor(model => model.Login, new { @class = "form-control text-dark"})
+        @Html.ValidationMessageFor(model => model.Login)*@
+    </div>
+</div>

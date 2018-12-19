@@ -49,14 +49,14 @@
     <div class="form-group row">
         @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label " })
         <div class="col-sm-4">
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control text-dark", @placeholder = "vlad_smith@gmail.com" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control text-dark", @placeholder = "vlad_smith@gmail.com", onblur = "checkEmail()" })
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             @Html.ValidationMessageFor(model => model.Email)
         </div>
         <div id="email_check" class="w-auto"></div>
-        <div class="col-sm-2">
+        @*<div class="col-sm-2">
             <input type="button" id="checkEmail_btn" onclick="checkEmail()" class="btn btn-outline-primary" value="Check email" />
-        </div>
+        </div>*@
 
     </div>
 

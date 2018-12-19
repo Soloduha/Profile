@@ -91,7 +91,8 @@ namespace ProfileApp.Controllers
                     Address = model.Address,
                     Name = model.Name,
                     Surname = model.Surname,
-                    Role = "user"
+                    Role = "user",
+                    UserName = model.Login
                 };
 
                 string path = String.Empty;
